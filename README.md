@@ -68,15 +68,15 @@ Install
 
 Start (dev)
 
-```npm run dev
+npm run dev
 # or
-npm start`
+npm start
 
 
 Test
 
-```curl -X POST http://localhost:8080/strings -H "Content-Type: application/json" -d '{"value":"racecar"}'
+curl -X POST http://localhost:8080/strings -H "Content-Type: application/json" -d '{"value":"racecar"}'
 curl http://localhost:8080/strings/racecar
 curl "http://localhost:8080/strings?is_palindrome=true&min_length=3"
-curl "http://localhost:8080/strings/filter-by-natural-language?query=all%20single%20word%20palindromic%20strings"`
+curl "http://localhost:8080/strings/filter-by-natural-language?query=all%20single%20word%20palindromic%20strings"
 
