@@ -11,7 +11,7 @@ A RESTful API that analyzes strings and stores their computed properties. Built 
 
 ### POST /strings
 - Request body:
-```json
+```bash
 { "value": "string to analyze" }
 
 Success: 201 Created with entry:
@@ -21,36 +21,28 @@ Success: 201 Created with entry:
   "value": "string to analyze",
   "properties": { ... },
   "created_at": "ISO timestamp"
-}`
+}
+```
 
 Errors: 400, 409, 422
 
-GET /strings/:string_value
+## GET /strings/:string_value
+- Returns analyzed entry or 404 if not found.
+- GET /strings
 
-Returns analyzed entry or 404 if not found.
-
-GET /strings
-
-Query filters:
-
-is_palindrome=true|false
-
-min_length, max_length (integers)
-
-word_count (integer)
+# Query filters:
+- is_palindrome=true|false
+- min_length, max_length (integers)
+- word_count (integer)
 
 contains_character (single character)
-
 Returns { data: [...], count, filters_applied }
 
-GET /strings/filter-by-natural-language?query=...
+## GET /strings/filter-by-natural-language?query=...
+- Accepts simple English queries (e.g. all single word palindromic strings)
+- Returns parsed filters + data
 
-Accepts simple English queries (e.g. all single word palindromic strings)
-
-Returns parsed filters + data
-
-DELETE /strings/:string_value
-
+## DELETE /strings/:string_value
 Deletes entry, returns 204 No Content or 404.
 
 ## Run locally
@@ -59,24 +51,27 @@ Deletes entry, returns 204 No Content or 404.
 
 git clone https://github.com/<your-username>/hng-stage1-string-analyzer.git
 cd hng-stage1-string-analyzer`
+```
 
+# Install
 
-Install
+```
+npm install
+```
 
-```npm install`
-
-
-Start (dev)
-
+# Start (dev)
+```
 npm run dev
 # or
 npm start
+```
 
 
-Test
-
+# Test
+```
 curl -X POST http://localhost:8080/strings -H "Content-Type: application/json" -d '{"value":"racecar"}'
 curl http://localhost:8080/strings/racecar
 curl "http://localhost:8080/strings?is_palindrome=true&min_length=3"
 curl "http://localhost:8080/strings/filter-by-natural-language?query=all%20single%20word%20palindromic%20strings"
+```
 
